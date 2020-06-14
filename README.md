@@ -2,9 +2,11 @@ Emby
 ===========
 
 ### Install
-
+    安装最新版请前往Emby官网https://emby.media/download.html
+    
     wget https://github.com/MediaBrowser/Emby.Releases/releases/download/4.4.3.0/emby-server-deb_4.4.3.0_amd64.deb
 
+    打开
     dpkg -i emby-server-deb_4.4.3.0_amd64.deb
 
 
@@ -37,15 +39,21 @@ RClone
     rclone config
 
 o remotes found - make a new one
+
 n) New remote
+
 s) Set configuration password
+
 q) Quit config
+
 n/s/q>
+
 输入n回车
 
 name emby 随意取 但是后面的代码也会相应改变
 
 Choose a number from below, or type in your own value
+
 选谷歌 （13） 可能会因为版本的不同而改变 注意选择 Google drive
 
 client_id> 直接回车（这个可以使用自己的API，不输入会使用公共API）
@@ -53,19 +61,25 @@ client_id> 直接回车（这个可以使用自己的API，不输入会使用公
 client_secret> 直接回车（这个可以使用自己的API，不输入会使用公共API）
 
 Choose a number from below, or type in your own value
+
 scope> 1 选1 有最大的使用权限。
 
 ID of the root folder
+
 Leave blank normally.
 
 Fill in to access "Computers" folders (see docs), or for rclone to use
 a non root folder as its starting point.
 
+
+
 Note that if this is blank, the first time rclone runs it will fill it
 in with the ID of the root folder.
 
+
 Enter a string value. Press Enter for the default ("").
 root_folder_id> 空，直接回车。空是跟路径如果想用别的根路径
+
 
 Service Account Credentials JSON file path
 Leave blank normally.
@@ -74,9 +88,13 @@ Enter a string value. Press Enter for the default ("").
 service_account_file> 直接回车
 
 Edit advanced config? (y/n)
+
 y) Yes
+
 n) No (default)
-y/n> n 不用别的高级配置
+
+y/n> 
+n 不用别的高级配置
 
 Use auto config?
 
