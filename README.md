@@ -1,8 +1,8 @@
 1，安装emby
 
-wget https://github.com/MediaBrowser/Emby.Releases/releases/download/4.4.2.0/emby-server-deb_4.4.2.0_amd64.deb
+wget https://github.com/MediaBrowser/Emby.Releases/releases/download/4.4.3.0/emby-server-deb_4.4.3.0_amd64.deb
 
-dpkg -i emby-server-deb_4.4.2.0_amd64.deb
+dpkg -i emby-server-deb_4.4.3.0_amd64.deb
 
 xxx.xxx.xxx.xxx:8096
 
@@ -17,7 +17,7 @@ sudo iptables -P OUTPUT ACCEPT
 sudo iptables -F
 
 
- 
+
 
 1、安装rclone
 
