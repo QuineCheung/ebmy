@@ -149,6 +149,7 @@ User=root
 [Install]
 WantedBy=default.target
 EOF
+
 6、设置启动
 
 systemctl start rclone
