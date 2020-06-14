@@ -1,46 +1,56 @@
-1，安装emby
+Emby
+===========
 
-wget https://github.com/MediaBrowser/Emby.Releases/releases/download/4.4.3.0/emby-server-deb_4.4.3.0_amd64.deb
+### Install
 
-dpkg -i emby-server-deb_4.4.3.0_amd64.deb
+    wget https://github.com/MediaBrowser/Emby.Releases/releases/download/4.4.3.0/emby-server-deb_4.4.3.0_amd64.deb
 
-xxx.xxx.xxx.xxx:8096
+    dpkg -i emby-server-deb_4.4.3.0_amd64.deb
+
+
+
+浏览器打开x.x.x.x:8096（x.x.x.x为你的IP地址）
 
 如果你还是打不开那可能是因为端口未开放的缘故 Ubuntu系统下打开端口
 
-iptables -F
+    iptables -F
 
 或者
-sudo iptables -P INPUT ACCEPT
-sudo iptables -P FORWARD ACCEPT
-sudo iptables -P OUTPUT ACCEPT
-sudo iptables -F
+
+    sudo iptables -P INPUT ACCEPT
+    sudo iptables -P FORWARD ACCEPT
+    sudo iptables -P OUTPUT ACCEPT
+    sudo iptables -F
 
 
+RClone
+===========
 
+### Install
 
 1、安装rclone
 
-curl https://rclone.org/install.sh | sudo bash
+    curl https://rclone.org/install.sh | sudo bash
 
 2、配置
 
-rclone config
+    rclone config
 
 o remotes found - make a new one
 n) New remote
 s) Set configuration password
 q) Quit config
-n/s/q> n
+n/s/q>
+输入n回车
 
 name emby 随意取 但是后面的代码也会相应改变
 
 Choose a number from below, or type in your own value
 选谷歌 （13） 可能会因为版本的不同而改变 注意选择 Google drive
 
-client_id> 直接回车
+client_id> 直接回车（这个可以使用自己的API，不输入会使用公共API）
 
-client_secret> 直接回车
+client_secret> 直接回车（这个可以使用自己的API，不输入会使用公共API）
 
 Choose a number from below, or type in your own value
 scope> 1 选1 有最大的使用权限。
@@ -107,48 +117,48 @@ e/n/d/r/c/s/q> q
 
 3.挂载
 
-mkdir -p /home/gdrive
+    mkdir -p /home/gdrive
 
-/usr/bin/rclone mount emby: /home/gdrive \
- --umask 0000 \
- --default-permissions \
- --allow-non-empty \
- --allow-other \
- --buffer-size 32M \
- --dir-cache-time 12h \
- --vfs-read-chunk-size 64M \
- --vfs-read-chunk-size-limit 1G &
+    /usr/bin/rclone mount emby: /home/gdrive \
+    --umask 0000 \
+    --default-permissions \
+    --allow-non-empty \
+    --allow-other \
+    --buffer-size 32M \
+    --dir-cache-time 12h \
+    --vfs-read-chunk-size 64M \
+    --vfs-read-chunk-size-limit 1G &
 ——————————
 
 4、查看挂载
 
-df -h
+    df -h
 5、自动挂载
 
-cat > /etc/systemd/system/rclone.service <<EOF
-[Unit]
-Description=Rclone
-AssertPathIsDirectory=LocalFolder
-After=network-online.target
+    cat > /etc/systemd/system/rclone.service <<EOF
+    [Unit]
+    Description=Rclone
+    AssertPathIsDirectory=LocalFolder
+    After=network-online.target
 
-[Service]
-Type=simple
-ExecStart=/usr/bin/rclone mount emby: /home/gdrive \
- --umask 0000 \
- --default-permissions \
- --allow-non-empty \
- --allow-other \
- --buffer-size 32M \
- --dir-cache-time 12h \
- --vfs-read-chunk-size 64M \
- --vfs-read-chunk-size-limit 1G
-ExecStop=/bin/fusermount -u LocalFolder
-Restart=on-abort
-User=root
+    [Service]
+    Type=simple
+    ExecStart=/usr/bin/rclone mount emby: /home/gdrive \
+     --umask 0000 \
+     --default-permissions \
+     --allow-non-empty \
+     --allow-other \
+     --buffer-size 32M \
+     --dir-cache-time 12h \
+     --vfs-read-chunk-size 64M \
+     --vfs-read-chunk-size-limit 1G
+    ExecStop=/bin/fusermount -u LocalFolder
+    Restart=on-abort
+    User=root
 
-[Install]
-WantedBy=default.target
-EOF
+    [Install]
+    WantedBy=default.target
+    EOF
 
 6、设置启动
 
