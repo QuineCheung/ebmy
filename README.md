@@ -2,22 +2,21 @@ Emby
 ===========
 
 ### Install
-    安装最新版请前往Emby官网https://emby.media/download.html
+  安装最新版请前往Emby官网https://emby.media/download.html
     
     wget https://github.com/MediaBrowser/Emby.Releases/releases/download/4.4.3.0/emby-server-deb_4.4.3.0_amd64.deb
 
-    打开
+  启动emby
+  
     dpkg -i emby-server-deb_4.4.3.0_amd64.deb
 
+  浏览器打开x.x.x.x:8096（x.x.x.x为你的IP地址）
 
-
-浏览器打开x.x.x.x:8096（x.x.x.x为你的IP地址）
-
-如果你还是打不开那可能是因为端口未开放的缘故 Ubuntu系统下打开端口
+  如果你还是打不开那可能是因为端口未开放的缘故 Ubuntu系统下打开端口
 
     iptables -F
 
-或者
+  或者
 
     sudo iptables -P INPUT ACCEPT
     sudo iptables -P FORWARD ACCEPT
@@ -180,16 +179,16 @@ e/n/d/r/c/s/q> q
 
 6、设置启动
 
-systemctl start rclone
+    systemctl start rclone
 
 7、开启启动
 
-systemctl enable rclone
+    systemctl enable rclone
 
 8、安装bbrplus 这里和之前搭建SSR之类使用BBR加速一样 不赘述
 
-wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
+    wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
 
 9、虚拟内存
 
-wget https://www.moerats.com/usr/shell/swap.sh && bash swap.sh
+    wget https://www.moerats.com/usr/shell/swap.sh && bash swap.sh
